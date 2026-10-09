@@ -1,0 +1,57 @@
+Personal Firewall Simulator
+
+About the Project
+
+The Personal Firewall Simulator is a beginner-friendly cybersecurity project developed using Python. It demonstrates how firewall rules can allow or block network traffic based on predefined conditions.
+
+Objectives
+
+- Understand the basic working of a personal firewall.
+- Learn how network traffic can be filtered.
+- Apply rules based on IP addresses, ports, protocols, and traffic direction.
+- Identify and record allowed or blocked traffic.
+
+Features
+
+- Simple web-based dashboard.
+- Allow or block simulated network traffic.
+- Filter traffic by source IP, destination IP, port, protocol, and direction.
+- Add and delete firewall rules.
+- Test the firewall using sample traffic events.
+- Store rules and event logs locally.
+
+Technologies Used
+
+- Python
+- Flask
+- HTML and CSS
+- JSON
+
+Project Structure
+
+- "app.py" – Runs the web dashboard.
+- "firewall_engine.py" – Applies firewall rules to simulated traffic.
+- "templates/" – Contains the dashboard page.
+- "static/" – Contains the CSS design.
+- "requirements.txt" – Lists the required Python packages.
+- "data/" – Stores local rules and logs.
+
+How It Works
+
+1. The user opens the dashboard.
+2. Firewall rules are created or selected.
+3. Sample network traffic is tested against the rules.
+4. The simulator decides whether to allow or block each event.
+5. The result is displayed and recorded in the event log.
+
+Learning Outcomes
+
+- Basic network security concepts.
+- Firewall rules and packet-filtering logic.
+- Python programming.
+- Web application development.
+- Security event logging.
+
+Disclaimer
+
+This project is an educational simulator for learning purposes. It does not block or filter real operating-system network traffic and should not be used as a replacement for a real firewall.
