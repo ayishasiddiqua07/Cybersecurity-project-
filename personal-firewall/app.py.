@@ -1,0 +1,37 @@
+from flask import Flask, render_template, request, redirect, url_for
+from firewall_engine import FirewallEngine
+
+app = Flask(name)
+firewall = FirewallEngine()
+
+@app.route("/")
+def index():
+return render_template(
+"index.html",
+rules=firewall.rules,
+logs=firewall.logs
+)
+
+@app.route("/add", methods=["POST"])
+def add_rule():
+firewall.add_rule(
+request.form.get("direction", "INBOUND"),
+request.form.get("action", "BLOCK"),
+request.form.get("ip", ""),
+request.form.get("port", ""),
+request.form.get("protocol", "TCP")
+)
+return redirect(url_for("index"))
+
+@app.route("/test", methods=["POST"])
+def test_traffic():
+firewall.test_traffic(
+request.form.get("direction", "INBOUND"),
+request.form.get("ip", "192.168.1.10"),
+request.form.get("port", "80"),
+request.form.get("protocol", "TCP")
+)
+return redirect(url_for("index"))
+
+if name == "main":
+app.run(host="127.0.0.1", port=5000, debug=False)
