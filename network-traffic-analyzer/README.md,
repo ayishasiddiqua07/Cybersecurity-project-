@@ -1,0 +1,26 @@
+Network Traffic Analyzer
+
+Project Overview
+
+This project analyzes network traffic to identify unusual activity and possible security threats.
+
+Features
+
+- Analyzes sample network traffic data.
+- Identifies suspicious ports and possible port scans.
+- Supports offline packet analysis.
+- Generates analysis results in JSON format.
+
+Technologies Used
+
+- Python
+- Scapy
+- CSV and JSON
+
+Purpose
+
+This project was developed as a cybersecurity project for CSE 7th Semester.
+
+Disclaimer
+
+This is an educational project. It does not guarantee detection of all attacks or malware.
