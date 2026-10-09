@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Firewall Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🛡️ Personal Firewall Simulator</h1>
+        <p>Learn how firewall rules allow or block sample network traffic.</p>
+    </header><main>
+    <section class="panel">
+        <h2>Add a Firewall Rule</h2>
+        <form action="/add" method="post">
+            <label>Direction
+                <select name="direction">
+                    <option>INBOUND</option>
+                    <option>OUTBOUND</option>
+                </select>
+            </label>
+
+            <label>Action
+                <select name="action">
+                    <option>BLOCK</option>
+                    <option>ALLOW</option>
+                </select>
+            </label>
+
+            <label>IP address
+                <input name="ip" placeholder="* or 192.168.1.10" required>
+            </label>
+
+            <label>Port
+                <input name="port" placeholder="* or 80" required>
+            </label>
+
+            <label>Protocol
+                <select name="protocol">
+                    <option>TCP</option>
+                    <option>UDP</option>
+                    <option>ICMP</option>
+                    <option>*</option>
+                </select>
+            </label>
+
+            <button type="submit">Add Rule</button>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>Test Sample Traffic</h2>
+        <form action="/test" method="post">
+            <label>Direction
+                <select name="direction">
+                    <option>INBOUND</option>
+                    <option>OUTBOUND</option>
+                </select>
+            </label>
+
+            <label>IP address
+                <input name="ip" value="192.168.1.10" required>
+            </label>
+
+            <label>Port
+                <input name="port" value="80" required>
+            </label>
+
+            <label>Protocol
+                <select name="protocol">
+                    <option>TCP</option>
+                    <option>UDP</option>
+                    <option>ICMP</option>
+                </select>
+            </label>
+
+            <button type="submit">Test Traffic</button>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>Current Rules</h2>
+        {% if rules %}
+        <ul>
+            {% for rule in rules %}
+            <li>
+                {{ rule.direction }} — {{ rule.action }} —
+                IP: {{ rule.ip }} — Port: {{ rule.port }} —
+                Protocol: {{ rule.protocol }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No rules added yet.</p>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <h2>Traffic Log</h2>
+        {% if logs %}
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th>Direction</th>
+                    <th>IP</th>
+                    <th>Port</th>
+                    <th>Protocol</th>
+                    <th>Result</th>
+                </tr>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.direction }}</td>
+                    <td>{{ log.ip }}</td>
+                    <td>{{ log.port }}</td>
+                    <td>{{ log.protocol }}</td>
+                    <td class="{{ log.result|lower }}">{{ log.result }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <p>No traffic tested yet.</p>
+        {% endif %}
+    </section>
+</main>
+
+<footer>
+    Educational simulator only. It does not filter real device traffic.
+</footer>
+
+</body>
+</html>
